@@ -52,7 +52,7 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
       >
         <div className="flex flex-col items-start">
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white leading-tight drop-shadow-xl mb-4">
-            Let's <span className="text-cyan-400">Talk.</span>
+            Let&apos;s <span className="text-cyan-400">Talk.</span>
           </h2>
           
           <motion.a 
