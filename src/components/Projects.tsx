@@ -1,80 +1,79 @@
 import { ArrowRight, ExternalLink } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 
 const PROJECTS = [
   {
-    title: "Library Management System",
-    description: "A MERN-based web app built with MongoDB, Express.js, React, and Node.js to manage books, members, and transactions efficiently.",
-    tags: ["MERN", "React", "MongoDB", "Node.js"],
+    title: "Library Manager",
+    description: "MERN stack platform for books and transactions.",
+    tags: ["MERN", "React", "MongoDB"],
     color: "from-emerald-500/10 to-teal-500/10"
   },
   {
     title: "Mero Paalo",
-    description: "Queue management web application designed to allow users to book, track, and manage their turn digitally, reducing waiting time.",
-    tags: ["React", "JavaScript", "Web App"],
+    description: "Digital queue and turn management application.",
+    tags: ["React", "Queue System"],
     color: "from-cyan-500/10 to-blue-500/10"
   },
   {
     title: "Cinema Hub",
-    description: "A cinema ticketing application dedicated to solving the problem of long lines by creating showtimes and booking tickets digitally.",
-    tags: ["React", "CSS", "Frontend"],
+    description: "Digital cinema ticketing and showtime platform.",
+    tags: ["React", "CSS"],
     color: "from-indigo-500/10 to-purple-500/10"
   }
 ];
 
 export default function Projects() {
   return (
-    <section className="relative z-10 bg-[#121212] py-32 md:py-48 px-6 md:px-12 lg:px-24">
+    <section className="relative z-10 bg-[#121212] py-24 md:py-32 px-6 md:px-12 lg:px-24">
       <div className="max-w-7xl mx-auto">
         
         {/* Header Section */}
-        <div className="mb-20 md:mb-32 flex flex-col items-center text-center">
-          <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-8">
-            <span className="text-sm font-semibold tracking-[0.2em] text-white/50 uppercase">
-              Portfolio
-            </span>
-          </div>
-          <h2 className="text-6xl md:text-[7rem] font-bold tracking-tighter text-white mb-8 leading-none">
-            Selected <span className="text-white/40 italic font-serif tracking-normal">Work</span>
+        <div className="mb-16 md:mb-24 flex flex-col items-center justify-center text-center">
+          <Badge variant="outline" className="mb-6 px-4 py-1.5 border-white/10 bg-white/5 text-white/50 tracking-widest uppercase rounded-full">
+            Portfolio
+          </Badge>
+          <h2 className="text-5xl md:text-7xl font-bold tracking-tighter text-white mb-6">
+            Selected <span className="text-white/40 font-light">Work.</span>
           </h2>
-          <p className="text-xl md:text-3xl text-white/40 max-w-3xl font-light leading-relaxed">
-            A showcase of recent digital experiences, built with modern web technologies 
-            and a focus on performance.
+          <p className="text-lg md:text-xl text-white/50 max-w-2xl font-light">
+            Recent projects built with a focus on performance.
           </p>
         </div>
 
         {/* Grid Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {PROJECTS.map((project, i) => (
             <div 
               key={i}
-              className="group relative flex flex-col justify-between p-10 md:p-12 rounded-[2.5rem] bg-white/[0.02] border border-white/[0.04] backdrop-blur-xl shadow-2xl overflow-hidden transition-all duration-700 hover:bg-white/[0.04] hover:border-white/[0.15] hover:-translate-y-3"
+              className="group relative flex flex-col justify-between p-8 md:p-10 rounded-[2rem] bg-white/[0.03] border border-white/[0.05] backdrop-blur-md shadow-xl overflow-hidden transition-all duration-300 hover:bg-white/[0.05] hover:border-white/[0.2] hover:-translate-y-2"
             >
-              {/* Subtle hover gradient glow */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none -z-10`} />
+              <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none -z-10`} />
               
-              <div className="absolute top-0 right-0 p-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-x-4 -translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 text-white/40">
-                <ExternalLink className="w-8 h-8" />
+              <div className="absolute top-0 right-0 p-8 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 -translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0 text-white/40">
+                <ExternalLink className="w-6 h-6" />
               </div>
 
-              <div className="mb-16">
-                <div className="flex flex-wrap gap-2 mb-10">
+              <div className="mb-10">
+                <div className="flex flex-wrap gap-2 mb-8">
                   {project.tags.map(tag => (
-                    <span key={tag} className="px-4 py-1.5 text-xs font-bold tracking-widest text-white/70 bg-white/5 border border-white/10 rounded-full uppercase transition-colors group-hover:bg-white/10 group-hover:text-white">
+                    <Badge key={tag} variant="secondary" className="bg-white/5 hover:bg-white/10 text-white/70 border-none font-medium">
                       {tag}
-                    </span>
+                    </Badge>
                   ))}
                 </div>
-                <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-white mb-6 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-br group-hover:from-white group-hover:to-white/50 transition-all duration-500">
+                <h3 className="text-2xl font-bold tracking-tight text-white mb-3 group-hover:text-emerald-400 transition-colors">
                   {project.title}
                 </h3>
-                <p className="text-white/50 text-xl font-light leading-relaxed group-hover:text-white/70 transition-colors duration-500">
+                <p className="text-white/50 font-light text-base leading-relaxed">
                   {project.description}
                 </p>
               </div>
 
-              <div className="flex items-center text-white/30 group-hover:text-emerald-400 transition-colors duration-500 font-semibold tracking-widest uppercase text-sm cursor-pointer w-max pointer-events-auto">
-                <span>View Details</span>
-                <ArrowRight className="w-5 h-5 ml-3 transform group-hover:translate-x-3 transition-transform duration-500" />
+              <div className="pointer-events-auto">
+                <Button variant="ghost" className="text-white/50 group-hover:text-white p-0 hover:bg-transparent tracking-wide">
+                  View Case Study <ArrowRight className="w-4 h-4 ml-2 transform group-hover:translate-x-1.5 transition-transform" />
+                </Button>
               </div>
             </div>
           ))}

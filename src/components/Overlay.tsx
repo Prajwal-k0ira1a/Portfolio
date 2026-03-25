@@ -1,83 +1,70 @@
 "use client";
 
 import { motion, MotionValue, useTransform } from "framer-motion";
-import { ArrowRight } from "lucide-react";
 
 interface OverlayProps {
   scrollYProgress: MotionValue<number>;
 }
 
 export default function Overlay({ scrollYProgress }: OverlayProps) {
-  const opacity1 = useTransform(scrollYProgress, [0, 0.1, 0.15], [1, 1, 0]);
-  const y1 = useTransform(scrollYProgress, [0, 0.2], [0, -100]);
+  // Section 1: Intro (Visible on load, fades out early)
+  const opacity1 = useTransform(scrollYProgress, [0, 0.15, 0.25], [1, 1, 0]);
+  const y1 = useTransform(scrollYProgress, [0, 0.25], [0, -30]);
 
-  const opacity2 = useTransform(scrollYProgress, [0.2, 0.3, 0.4, 0.5], [0, 1, 1, 0]);
-  const y2 = useTransform(scrollYProgress, [0.2, 0.5], [100, -100]);
+  // Section 2: Statement (Fades in middle, fades out)
+  const opacity2 = useTransform(scrollYProgress, [0.35, 0.4, 0.55, 0.65], [0, 1, 1, 0]);
+  const y2 = useTransform(scrollYProgress, [0.35, 0.4, 0.65], [30, 0, -30]);
 
-  const opacity3 = useTransform(scrollYProgress, [0.55, 0.65, 0.75, 0.85], [0, 1, 1, 0]);
-  const y3 = useTransform(scrollYProgress, [0.55, 0.85], [100, -100]);
+  // Section 3: Contact (Fades in late, fades out leaving sequence visible)
+  const opacity3 = useTransform(scrollYProgress, [0.7, 0.75, 0.85, 0.95], [0, 1, 1, 0]);
+  const y3 = useTransform(scrollYProgress, [0.7, 0.75, 0.95], [30, 0, -30]);
+  const pointerEvents3 = useTransform(scrollYProgress, (v) => (v > 0.7 && v < 0.95) ? "auto" : "none");
 
   return (
-    <div className="absolute inset-0 w-full h-full pointer-events-none z-10">
-      {/* Global Vignette to ensure text always pops against the canvas */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#121212]/80 via-transparent to-[#121212]/90 pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(18,18,18,0.6)_100%)] pointer-events-none" />
-
-      {/* Section 1: Center Aligned */}
+    <div className="absolute inset-0 w-full h-full pointer-events-none z-10 overflow-hidden">
+      
+      {/* Section 1: Intro (Top Left Quadrant) */}
       <motion.div
         style={{ opacity: opacity1, y: y1 }}
-        className="absolute inset-0 flex flex-col items-center justify-center text-center p-6"
+        className="absolute top-12 left-8 md:top-20 md:left-20 flex flex-col items-start text-left pointer-events-none"
       >
-      
-        
-        <h1 className="text-7xl md:text-[9rem] font-extrabold tracking-tighter text-white leading-none drop-shadow-[0_0_40px_rgba(0,0,0,0.8)]">
-          Prajwal
-          <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40">Koirala.</span>
+        <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white drop-shadow-xl">
+          Prajwal Koirala.
+          <span className="block text-xl md:text-2xl text-white/50 font-light mt-2">Frontend Developer</span>
         </h1>
-        
-        <p className="mt-8 text-2xl md:text-4xl font-light text-emerald-100/80 tracking-tight drop-shadow-xl max-w-xl">
-          Frontend Developer
-        </p>
       </motion.div>
 
-      {/* Section 2: Left Aligned */}
+      {/* Section 2: Statement (Center Right Quadrant) */}
       <motion.div
         style={{ opacity: opacity2, y: y2 }}
-        className="absolute inset-0 flex items-center justify-start p-10 md:p-32"
+        className="absolute top-1/2 -translate-y-1/2 right-8 md:right-20 flex flex-col justify-center items-end text-right pointer-events-none"
       >
-       
+        <h2 className="text-4xl md:text-7xl font-bold tracking-tight text-white leading-tight max-w-2xl drop-shadow-2xl">
+          Intuitive Web <br />
+          <span className="text-emerald-400">Solutions.</span>
+        </h2>
       </motion.div>
 
-      {/* Section 3: Right Aligned */}
+      {/* Section 3: Contact (Bottom Left Quadrant) */}
       <motion.div
         style={{ opacity: opacity3, y: y3 }}
-        className="absolute inset-0 flex items-center justify-end p-10 md:p-32 text-right pointer-events-auto"
+        className="absolute bottom-12 left-8 md:bottom-20 md:left-20 flex flex-col justify-end items-start text-left pointer-events-none"
       >
-        <div className="flex flex-col items-end">
-          <h2 className="text-6xl md:text-[8rem] font-black tracking-tighter text-white drop-shadow-[0_0_40px_rgba(0,0,0,0.9)] mb-12 leading-none">
-            Let's <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/20">Connect.</span>
+        <div className="flex flex-col items-start">
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white leading-tight drop-shadow-xl mb-4">
+            Let's <span className="text-cyan-400">Talk.</span>
           </h2>
           
-          <div className="flex flex-col items-end gap-5 text-2xl md:text-3xl font-medium tracking-tight">
-            <a 
-              href="mailto:prajwalkoirala05@gmail.com" 
-              className="group flex items-center gap-4 hover:text-emerald-400 transition-colors duration-500 drop-shadow-lg"
-            >
-              prajwalkoirala05@gmail.com
-              <ArrowRight className="w-8 h-8 transform group-hover:translate-x-3 transition-transform duration-500 opacity-50 group-hover:opacity-100" />
-            </a>
-            
-            <span className="text-white/60 font-light drop-shadow-lg mt-2">+977 9827320629</span>
-            
-            <div className="w-full md:w-96 h-px bg-gradient-to-r from-transparent to-white/20 my-6" />
-            
-            <span className="text-white/40 text-xl font-light tracking-wide uppercase">
-              Itahari International College
-            </span>
-          </div>
+          <motion.a 
+            href="mailto:prajwalkoirala05@gmail.com"
+            style={{ pointerEvents: pointerEvents3 }}
+            className="text-lg md:text-xl text-white/70 hover:text-white transition-colors duration-300 drop-shadow-md border-b border-white/20 hover:border-white/50 pb-1"
+          >
+            prajwalkoirala05@gmail.com
+          </motion.a>
         </div>
       </motion.div>
+      
     </div>
   );
 }

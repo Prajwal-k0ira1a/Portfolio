@@ -4,9 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import { useScroll, useMotionValueEvent } from "framer-motion";
 import Overlay from "./Overlay";
 
-const FRAME_COUNT = 75;
-const FRAME_PREFIX = "frame_";
-const FRAME_SUFFIX = "_delay-0.066s.png";
+const FRAME_COUNT = 90;
+const FRAME_PREFIX = "ezgif-frame-";
+const FRAME_SUFFIX = ".png";
 
 export default function ScrollyCanvas() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -22,14 +22,14 @@ export default function ScrollyCanvas() {
   useEffect(() => {
     const loadedImages: HTMLImageElement[] = [];
     
-    for (let i = 0; i < FRAME_COUNT; i++) {
+    for (let i = 1; i <= FRAME_COUNT; i++) {
       const img = new Image();
-      const frameNumber = i.toString().padStart(2, "0");
+      const frameNumber = i.toString().padStart(3, "0");
       img.src = `/sequence/${FRAME_PREFIX}${frameNumber}${FRAME_SUFFIX}`;
       
       img.onload = () => {
         // Render first frame as soon as it's ready
-        if (i === 0) {
+        if (i === 1) {
           drawFrame(img);
         }
       };
