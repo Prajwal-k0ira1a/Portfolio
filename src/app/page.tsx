@@ -1,6 +1,8 @@
 import ScrollyCanvas from "@/components/ScrollyCanvas";
 import TechMarquee from "@/components/TechMarquee";
 import Projects from "@/components/Projects";
+import ContactCta from "@/components/ContactCta";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -8,6 +10,8 @@ export default function Home() {
       <ScrollyCanvas />
       <TechMarquee />
       <Projects />
+      <ContactCta />
+      <Footer />
     </main>
   );
 }

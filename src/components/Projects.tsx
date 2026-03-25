@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -7,20 +8,26 @@ const PROJECTS = [
     title: "Library Manager",
     description: "MERN stack platform for books and transactions.",
     tags: ["MERN", "React", "MongoDB"],
-    color: "from-emerald-500/10 to-teal-500/10"
+    color: "from-emerald-500/10 to-teal-500/10",
+    href: "https://library-frontend-taupe.vercel.app/",
+    cta: "Open Library",
   },
   {
     title: "Mero Paalo",
     description: "Digital queue and turn management application.",
     tags: ["React", "Queue System"],
-    color: "from-cyan-500/10 to-blue-500/10"
+    color: "from-cyan-500/10 to-blue-500/10",
+    href: "https://meropaalo-queue-frontend.vercel.app/",
+    cta: "Open Mero Paalo",
   },
   {
     title: "Cinema Hub",
     description: "Digital cinema ticketing and showtime platform.",
     tags: ["React", "CSS"],
-    color: "from-indigo-500/10 to-purple-500/10"
-  }
+    color: "from-indigo-500/10 to-purple-500/10",
+    href: "https://cinemahub-frontend.vercel.app/",
+    cta: "Open Cinema Hub",
+  },
 ];
 
 export default function Projects() {
@@ -30,11 +37,9 @@ export default function Projects() {
         
         {/* Header Section */}
         <div className="mb-16 md:mb-24 flex flex-col items-center justify-center text-center">
-          <Badge variant="outline" className="mb-6 px-4 py-1.5 border-white/10 bg-white/5 text-white/50 tracking-widest uppercase rounded-full">
-            Portfolio
-          </Badge>
+          
           <h2 className="text-5xl md:text-7xl font-bold tracking-tighter text-white mb-6">
-            Selected <span className="text-white/40 font-light">Work.</span>
+            Worked with  <span className="text-white/40 font-light">Following Projects</span>
           </h2>
           <p className="text-lg md:text-xl text-white/50 max-w-2xl font-light">
             Recent projects built with a focus on performance.
@@ -44,9 +49,12 @@ export default function Projects() {
         {/* Grid Section */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {PROJECTS.map((project, i) => (
-            <div 
+            <Link
               key={i}
-              className="group relative flex flex-col justify-between p-8 md:p-10 rounded-[2rem] bg-white/[0.03] border border-white/[0.05] backdrop-blur-md shadow-xl overflow-hidden transition-all duration-300 hover:bg-white/[0.05] hover:border-white/[0.2] hover:-translate-y-2"
+              href={project.href}
+              target="_blank"
+              rel="noreferrer"
+              className="group relative flex flex-col justify-between p-8 md:p-10 rounded-[2rem] bg-white/[0.03] border border-white/[0.05] backdrop-blur-md shadow-xl overflow-hidden transition-all duration-300 hover:bg-white/[0.05] hover:border-white/[0.2] hover:-translate-y-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70"
             >
               <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none -z-10`} />
               
@@ -71,11 +79,11 @@ export default function Projects() {
               </div>
 
               <div className="pointer-events-auto">
-                <Button variant="ghost" className="text-white/50 group-hover:text-white p-0 hover:bg-transparent tracking-wide">
-                  View Case Study <ArrowRight className="w-4 h-4 ml-2 transform group-hover:translate-x-1.5 transition-transform" />
+                <Button variant="ghost" className="pointer-events-none text-white/50 group-hover:text-white p-0 hover:bg-transparent tracking-wide">
+                  {project.cta} <ArrowRight className="w-4 h-4 ml-2 transform group-hover:translate-x-1.5 transition-transform" />
                 </Button>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
