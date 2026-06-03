@@ -13,6 +13,11 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+  .bg-orange-black {
+    background-image: radial-gradient(circle at 50% 30vh, rgba(255, 115, 35, 0.08) 0%, rgba(6, 6, 10, 1) 75%);
+    background-attachment: fixed;
+    background-color: #06060a;
+  }
 }
 
 @layer base {

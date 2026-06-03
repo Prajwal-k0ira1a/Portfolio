@@ -30,7 +30,7 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
       >
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white drop-shadow-xl">
           Prajwal Koirala.
-          <span className="block text-xl md:text-2xl text-white/50 font-light mt-2">Frontend Developer</span>
+          <span className="block text-xl md:text-2xl text-white/50 font-light mt-2">Full Stack Developer</span>
         </h1>
       </motion.div>
 

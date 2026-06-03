@@ -98,7 +98,7 @@ export default function Footer() {
 
         <div className="mt-14 flex flex-col gap-3 border-t border-white/10 pt-5 text-xs uppercase tracking-[0.24em] text-white/28 md:flex-row md:items-center md:justify-between">
           <p>Prajwal Koirala</p>
-          <p>Frontend Developer</p>
+          <p>Full Stack Developer</p>
         </div>
       </div>
     </footer>
