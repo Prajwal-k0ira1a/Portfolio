@@ -15,7 +15,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Prajwal Koirala - Frontend Developer",
+  title: "Prajwal Koirala - Full Stack Developer",
   description: "Portfolio of Prajwal Koirala, built with Next.js and Framer Motion.",
 };
 
