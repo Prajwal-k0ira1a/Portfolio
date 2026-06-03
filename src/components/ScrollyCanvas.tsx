@@ -7,6 +7,10 @@ import Overlay from "./Overlay";
 const FRAME_COUNT = 90;
 const FRAME_PREFIX = "ezgif-frame-";
 const FRAME_SUFFIX = ".png";
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+const withBasePath = (path: string) =>
+  `${BASE_PATH}${path}`;
 
 export default function ScrollyCanvas() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -25,7 +29,7 @@ export default function ScrollyCanvas() {
     for (let i = 1; i <= FRAME_COUNT; i++) {
       const img = new Image();
       const frameNumber = i.toString().padStart(3, "0");
-      img.src = `/sequence/${FRAME_PREFIX}${frameNumber}${FRAME_SUFFIX}`;
+      img.src = withBasePath(`/sequence/${FRAME_PREFIX}${frameNumber}${FRAME_SUFFIX}`);
       
       img.onload = () => {
         // Render first frame as soon as it's ready
